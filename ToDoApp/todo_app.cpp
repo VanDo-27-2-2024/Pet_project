@@ -90,6 +90,8 @@ int main()
 
     while(true)
     {
+        std::cout << "===================== \n";
+        std::cout << "===== TO-DO APP ===== \n";
         std::cout << "1. Add task \n";
         std::cout << "2. Show task list \n";
         std::cout << "3. Delete task \n";
@@ -98,6 +100,8 @@ int main()
 
         int user_input;
         std::cin >> user_input;
+
+        std::cout << "===================== \n";
 
         switch(user_input)
         {
@@ -136,12 +140,28 @@ int main()
                 app_mgr_ins->add_task(task_name, task_status);
                 break;
             }
-            // case 2:
-            //     break;
-            // case 3:
-            //     break;
-            // case 4:
-            //     break;
+            case 2:
+            {
+                // Show task list
+
+                std::vector<task*> task_list = app_mgr_ins->get_task_list();
+                std::cout << "==== Task list ===\n";
+
+                int i = 1;
+                std::vector<task*>::iterator it;
+                for (it = task_list.begin(); it < task_list.end(); it++)
+                {
+                    std::cout << i << ". " << (*it)->get_task_name() << " - status: " << (int)((*it)->get_task_status()) << "\n";
+                    i++;
+                }
+                std::cout << "==================== \n";
+                break;
+            }
+            case 3:
+                
+                break;
+            case 4:
+                break;
             default:
                 std::cout << "Invalid choice!!!";
         }
