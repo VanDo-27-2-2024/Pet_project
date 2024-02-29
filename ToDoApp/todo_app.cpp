@@ -74,12 +74,12 @@ class app_mgr
 
         void update_task_name_by_index(int index, std::string _name)
         {
-            task_list[index]->set_task_name(_name);
+            task_list[index - 1]->set_task_name(_name);
         }
 
         void update_task_status_by_index(int index, status_t _status)
         {
-            task_list[index]->set_task_status(_status);
+            task_list[index -1]->set_task_status(_status);
         }
 
 };
@@ -171,12 +171,11 @@ int main()
             case 4:
             {
                 // Edit task
-                std::cin.ignore(10000, '\n');
-
                 std::cout << "Enter index of task that will be editted: \n";
                 int index;
                 std::cin >> index;
 
+                std::cin.ignore(10000, '\n');
                 std::cout << "Enter new task name: \n";
                 std::string task_name;
                 getline(std::cin, task_name);
@@ -200,10 +199,8 @@ int main()
                     default:
                         break;
                 }
-
                 app_mgr_ins->update_task_name_by_index(index, task_name);
                 app_mgr_ins->update_task_status_by_index(index, task_status);
-
                 break;
             }
             default:
