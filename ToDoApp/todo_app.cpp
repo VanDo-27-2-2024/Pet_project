@@ -68,6 +68,9 @@ class app_mgr
         void delete_task_by_index(int index)
         {
             std::vector<task*>::iterator it = task_list.begin();
+
+            // free task object instance
+            delete task_list[index - 1];
             task_list.erase(it + (index - 1));
             std::cout << "Delete task successfully!!! \n";
         }
@@ -208,6 +211,8 @@ int main()
         }
 
     }
+
+    delete app_mgr_ins;
 
     return 0;
 }
