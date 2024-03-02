@@ -1,8 +1,41 @@
 #include "app_mgr.h"
+#include <sys/stat.h>
 
 int main()
 {
     app_mgr* app_mgr_ins = new app_mgr;
+
+
+    // Check if folder task_profile is exist
+    const char* dir = "../task_profile";
+
+    // Structure which would store the metadata
+    struct stat sb;
+
+    // Calls the function with path as argument
+    // If the file/directory exists at the path returns 0
+    // If block executes if path exists
+    // Else automatically create folder for saving profile
+    if (stat(dir, &sb) == 0)
+    {
+        std::cout << "The path is VALID!";
+        //list out current profile
+    }
+    else
+    {
+        std::cout << "The Path is INVALID! \n";
+        if(mkdir("../task_profile", 0777) == 0) {
+            std::cout << "Folder created successfully.\n" << std::endl;
+        }
+        else
+        {
+            std::cout << "Failed to create folder.\n" << std::endl;
+            return 0;
+        }
+    }
+
+
+
 
     while(true)
     {
@@ -12,6 +45,7 @@ int main()
         std::cout << "2. Show task list \n";
         std::cout << "3. Delete task \n";
         std::cout << "4. Update task \n";
+        std::cout << "5. Save task list \n";
         std::cout << "Enter your choice: \n";
 
         int user_input;
@@ -74,6 +108,11 @@ int main()
                 app_mgr_ins->update_task_name_by_index(index, task_name);
                 app_mgr_ins->update_task_status_by_index(index, choice);
                 break;
+            }
+            case 5:
+            {
+                app_mgr_ins->save_profile();
+
             }
             default:
                 std::cout << "Invalid choice!!!";
