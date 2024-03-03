@@ -1,5 +1,6 @@
 #include "app_mgr.h"
 #include <sys/stat.h>
+#include <boost/filesystem.hpp>
 
 int main()
 {
@@ -20,6 +21,8 @@ int main()
     {
         std::cout << "The path is VALID!";
         //list out current profile
+
+        
     }
     else
     {
@@ -33,9 +36,6 @@ int main()
             return 0;
         }
     }
-
-
-
 
     while(true)
     {
