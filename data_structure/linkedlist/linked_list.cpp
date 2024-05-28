@@ -38,6 +38,25 @@ class linked_list
             temp1->next = temp;
         }
 
+        // Remove element in any position
+        void remove(int index)
+        {
+            node* temp = head;
+            if (index == 1)
+            {
+                head = temp->next;
+                delete (temp);
+                return;
+            }
+            for (int i = 1; i < (index - 1); i++)
+            {
+                temp = temp->next;
+            }
+            node*temp1 = temp->next;
+            temp->next = temp1->next;
+            delete temp1;
+        }
+
         void print()
         {
             node* temp = head;
