@@ -57,6 +57,24 @@ class linked_list
             delete temp1;
         }
 
+        // Reverse linked list
+        void reverse()
+        {
+            node* temp = nullptr;
+            node* current = head;
+            node* prev = nullptr;
+            node* next = nullptr;
+            while(current != nullptr)
+            {
+                next  = current->next;
+                current->next = prev;
+
+                prev = current;
+                current = next;
+            }
+            head = prev;
+        }
+
         void print()
         {
             node* temp = head;
@@ -83,7 +101,10 @@ int main()
     list.insert(5, 3);
     list.insert(7, 4);
     list.insert(9, 5);
+    list.print();
 
+
+    list.reverse();
     list.print();
 
     return 0;
