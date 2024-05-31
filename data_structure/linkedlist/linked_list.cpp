@@ -57,7 +57,7 @@ class linked_list
             delete temp1;
         }
 
-        // Reverse linked list
+        // Reverse linked list - Iterrative method
         void reverse()
         {
             node* temp = nullptr;
@@ -75,6 +75,33 @@ class linked_list
             head = prev;
         }
 
+        void reverse_recursive(node* temp)
+        {
+            // to do stop recursive
+            if (temp->next == nullptr)
+            {
+                head = temp;
+                return;
+            }
+
+            reverse_recursive(temp->next);
+            temp->next->next = temp;
+            temp->next =nullptr;
+        }
+
+        // Print linked list using recursive
+        void print_recursive(node* tmp)
+        {
+            if (tmp == nullptr)
+            {
+                cout << endl;
+                return;
+            }
+
+            cout << tmp->data << "->";
+            print_recursive(tmp->next);
+        }
+
         void print()
         {
             node* temp = head;
@@ -86,6 +113,11 @@ class linked_list
                 temp = temp->next;
             }
             cout << "\n";
+        }
+
+        node* get_head()
+        {
+            return head;
         }
 
     private:
@@ -101,11 +133,18 @@ int main()
     list.insert(5, 3);
     list.insert(7, 4);
     list.insert(9, 5);
+
+    node* tmp = list.get_head();
+    list.reverse_recursive(tmp);
+
+    //get new head after reverse list
+    tmp = list.get_head();
     list.print();
+    list.print_recursive(tmp);
 
 
-    list.reverse();
-    list.print();
+    // list.reverse();
+    // list.print();
 
     return 0;
 }
